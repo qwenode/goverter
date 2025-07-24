@@ -63,7 +63,7 @@ func Parse(obj types.Object, opts *ParseOpts, localOpts LocalOpts) (*Definition,
 	}
 
 	if !xtype.Accessible(obj, opts.OutputPackagePath) {
-		return nil, formatErr("must be exported")
+		return nil, formatErr("must be exported or in the same package as the converter")
 	}
 
 	sig, ok := obj.Type().(*types.Signature)

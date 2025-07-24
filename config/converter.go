@@ -225,6 +225,14 @@ func parseConverterLine(ctx *context, c *Converter, value string) (err error) {
 		pattern, err = parseIDPattern(c.Package, rest)
 		c.Enum.Excludes = append(c.Enum.Excludes, pattern)
 	case configExtend:
+		// Ensure OutputPackagePath is set before processing extend
+		if c.OutputPackagePath == "" {
+			targetPackage, resolveErr := resolvePackage(c.FileName, c.Package, c.OutputFile)
+			if resolveErr == nil {
+				c.OutputPackagePath = targetPackage
+			}
+		}
+		
 		for _, name := range strings.Fields(rest) {
 			opts := &method.ParseOpts{
 				ErrorPrefix:       "error parsing type",
