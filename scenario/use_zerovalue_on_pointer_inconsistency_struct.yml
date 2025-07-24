@@ -33,6 +33,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertPerson(source execution.Person) execution.APIPerson {
         	var structsAPIPerson execution.APIPerson
         	structsAPIPerson.Info = c.pStructsPersonInfoToStructsAPIPersonInfo(source.Info)

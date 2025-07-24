@@ -20,6 +20,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var ConverterConvert = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source map[string]execution.ID) map[string]string {
         	var mapStringString map[string]string
         	if source != nil {

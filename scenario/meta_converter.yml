@@ -30,6 +30,17 @@ success:
         package generated
 
         type Converter3Impl struct{}
+
+        var Converter3 = Converter3Impl{}
+
         type Converter4Impl struct{}
+
+        var Converter4 = Converter4Impl{}
+
         type ConverterImpl struct{}
+
+        var Converter = ConverterImpl{}
+
         type RenamedConverter struct{}
+
+        var RenamedConverter = RenamedConverter{}

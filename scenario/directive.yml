@@ -31,7 +31,12 @@ success:
         import execution "github.com/jmattheis/goverter/execution"
 
         type OneImpl struct{}
+
+        var One = OneImpl{}
+
         type SimpleImpl struct{}
+
+        var Simple = SimpleImpl{}
 
         func (c *SimpleImpl) Convert(source struct {
         	Value int

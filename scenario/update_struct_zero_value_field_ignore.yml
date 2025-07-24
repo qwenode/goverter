@@ -62,6 +62,8 @@ success:
 
         type DefaultImpl struct{}
 
+        var Default = DefaultImpl{}
+
         func (c *DefaultImpl) Convert(source execution.Input, target *execution.Output) {
         	target.A = source.A
         	target.A2 = execution.ID(source.A2)
@@ -87,6 +89,8 @@ success:
         }
 
         type IgnoreBasicImpl struct{}
+
+        var IgnoreBasic = IgnoreBasicImpl{}
 
         func (c *IgnoreBasicImpl) Convert(source execution.Input, target *execution.Output) {
         	if source.A != "" {
@@ -127,6 +131,8 @@ success:
         }
 
         type IgnoreStructImpl struct{}
+
+        var IgnoreStruct = IgnoreStructImpl{}
 
         func (c *IgnoreStructImpl) Convert(source execution.Input, target *execution.Output) {
         	target.A = source.A

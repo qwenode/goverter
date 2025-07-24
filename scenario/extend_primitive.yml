@@ -21,6 +21,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var ConverterConvert = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source string) (*int, error) {
         	xint, err := execution.Conv(source)
         	if err != nil {

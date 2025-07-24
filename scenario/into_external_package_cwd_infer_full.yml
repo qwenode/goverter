@@ -30,6 +30,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertPerson(source execution.Input) execution.Output {
         	var structsOutput execution.Output
         	structsOutput.Name = source.Name

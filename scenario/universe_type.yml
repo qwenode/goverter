@@ -20,6 +20,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Error(source *error) *error {
         	var pError *error
         	if source != nil {

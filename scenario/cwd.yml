@@ -26,6 +26,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source pkg1.Input) pkg1.Output {
         	var pkg1Output pkg1.Output
         	pkg1Output.ID = source.ID

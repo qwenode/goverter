@@ -38,6 +38,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source map[string]interface {
         	io.Reader
         	Test() bool

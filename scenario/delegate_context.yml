@@ -31,6 +31,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input, context string) execution.Output {
         	return execution.InputToOutput(source, context)
         }

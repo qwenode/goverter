@@ -24,6 +24,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input, target *execution.Output) {
         	if source.A != nil {
         		xstring := *source.A

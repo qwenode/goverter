@@ -27,4 +27,4 @@ error: |-
     error parsing type:
         func github.com/jmattheis/goverter/execution/convert.stringToBool(s string) bool
 
-    must be exported
+    must be exported or in the same package as the converter

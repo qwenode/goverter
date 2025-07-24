@@ -18,4 +18,4 @@ error: |-
         @workdir/input.go:5
         func (github.com/jmattheis/goverter/execution.Converter).convert(source github.com/jmattheis/goverter/execution.Input) github.com/jmattheis/goverter/execution.Output
 
-    must be exported
+    must be exported or in the same package as the converter

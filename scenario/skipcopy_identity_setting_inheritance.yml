@@ -44,6 +44,8 @@ success:
 
         type DisableInSubMethodImpl struct{}
 
+        var DisableInSubMethod = DisableInSubMethodImpl{}
+
         func (c *DisableInSubMethodImpl) Disable(source *int) *int {
         	var pInt *int
         	if source != nil {
@@ -58,6 +60,8 @@ success:
 
         type DisablesGlobalImpl struct{}
 
+        var DisablesGlobal = DisablesGlobalImpl{}
+
         func (c *DisablesGlobalImpl) Disabled(source *int) *int {
         	var pInt *int
         	if source != nil {
@@ -68,6 +72,8 @@ success:
         }
 
         type EnableInSubMethodImpl struct{}
+
+        var EnableInSubMethod = EnableInSubMethodImpl{}
 
         func (c *EnableInSubMethodImpl) Disable(source *string) *string {
         	var pString *string
@@ -83,11 +89,15 @@ success:
 
         type KeepsGlobalValueImpl struct{}
 
+        var KeepsGlobalValue = KeepsGlobalValueImpl{}
+
         func (c *KeepsGlobalValueImpl) Enabled(source *string) *string {
         	return source
         }
 
         type UsesGlobalImpl struct{}
+
+        var UsesGlobal = UsesGlobalImpl{}
 
         func (c *UsesGlobalImpl) Enabled(source *string) *string {
         	return source

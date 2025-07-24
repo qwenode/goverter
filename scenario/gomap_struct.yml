@@ -26,6 +26,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source map[string]execution.Input) map[string]execution.Output {
         	var mapStringSlicesOutput map[string]execution.Output
         	if source != nil {

@@ -29,6 +29,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var ConverterConvert = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input) execution.Output {
         	var structsOutput execution.Output
         	pStructsID := execution.ID(source.ID)

@@ -41,6 +41,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var ConverterConvert = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.ID) execution.OtherID {
         	return execution.OtherID(source)
         }

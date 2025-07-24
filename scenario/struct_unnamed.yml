@@ -28,6 +28,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertHouse(source execution.Input) execution.Output {
         	var structsOutput execution.Output
         	structsOutput.House.Name = source.House.Name

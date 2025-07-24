@@ -31,6 +31,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Person) execution.FlatPerson {
         	var exampleFlatPerson execution.FlatPerson
         	exampleFlatPerson.Name = source.Name

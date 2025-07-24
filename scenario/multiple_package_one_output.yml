@@ -41,6 +41,8 @@ success:
 
         type Converter2Impl struct{}
 
+        var Converter2 = Converter2Impl{}
+
         func (c *Converter2Impl) Convert(source model.Input) model.Output {
         	var modelOutput model.Output
         	modelOutput.ID = source.ID
@@ -48,6 +50,8 @@ success:
         }
 
         type ConverterImpl struct{}
+
+        var Converter = ConverterImpl{}
 
         func (c *ConverterImpl) Convert(source model.Input) model.Output {
         	var modelOutput model.Output

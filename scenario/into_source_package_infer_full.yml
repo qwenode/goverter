@@ -24,10 +24,14 @@ success:
 
         package structs
 
+        import execution "github.com/jmattheis/goverter/execution"
+
         type ConverterImpl struct{}
 
-        func (c *ConverterImpl) ConvertPerson(source Input) Output {
-        	var structsOutput Output
-        	structsOutput.Name = StringPToString(source.Name)
+        var Converter = ConverterImpl{}
+
+        func (c *ConverterImpl) ConvertPerson(source execution.Input) execution.Output {
+        	var structsOutput execution.Output
+        	structsOutput.Name = execution.StringPToString(source.Name)
         	return structsOutput
         }

@@ -36,6 +36,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertAddress(source execution.Person) (execution.APIAddress, error) {
         	var structsAPIAddress execution.APIAddress
         	structsAPIAddress.StreetName = source.Name

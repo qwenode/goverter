@@ -28,6 +28,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input) execution.Output {
         	var structsOutput execution.Output
         	structsOutput.ID = execution.OutputID(execution.ConvertUnderlying(source.ID))

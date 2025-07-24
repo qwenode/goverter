@@ -22,6 +22,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input) execution.Output {
         	var aliasOutput execution.Output
         	aliasOutput.Name = source.Name

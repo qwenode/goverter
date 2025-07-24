@@ -27,6 +27,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertPerson(source Input) Output {
         	var structsOutput Output
         	structsOutput.Name = StringPToString(source.Name)

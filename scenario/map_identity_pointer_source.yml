@@ -30,6 +30,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) ConvertPerson(source *execution.Person) *execution.APIPerson {
         	var pStructsAPIPerson *execution.APIPerson
         	if source != nil {

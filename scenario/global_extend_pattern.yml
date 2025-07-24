@@ -28,6 +28,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input) (execution.Output, error) {
         	var structsOutput execution.Output
         	xbool, err := strconv.ParseBool(source.Done)

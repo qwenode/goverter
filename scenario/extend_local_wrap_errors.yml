@@ -32,6 +32,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source execution.Input) (execution.Output, error) {
         	var structsOutput execution.Output
         	xint, err := strconv.Atoi(source.PostalCode)

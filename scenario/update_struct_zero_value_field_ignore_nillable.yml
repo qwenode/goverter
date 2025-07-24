@@ -53,6 +53,8 @@ success:
 
         type IgnoreNilImpl struct{}
 
+        var IgnoreNil = IgnoreNilImpl{}
+
         func (c *IgnoreNilImpl) Convert(source execution.Input, target *execution.Output) {
         	target.A = source.A
         	if source.P1 != nil {

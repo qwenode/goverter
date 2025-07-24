@@ -30,6 +30,8 @@ success:
 
         type DefaultImpl struct{}
 
+        var Default = DefaultImpl{}
+
         func (c *DefaultImpl) Convert(source *execution.Input) (*execution.Output, error) {
         	pExecutionOutput := execution.NewOutputWithDefaults()
         	if source != nil {
@@ -41,6 +43,8 @@ success:
         }
 
         type UpdateImpl struct{}
+
+        var Update = UpdateImpl{}
 
         func (c *UpdateImpl) Update(source *execution.Input) (*execution.Output, error) {
         	pExecutionOutput := execution.NewOutputWithDefaults()

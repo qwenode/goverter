@@ -41,6 +41,8 @@ success:
         */
         type MultiLineImpl struct{}
 
+        var MultiLine = MultiLineImpl{}
+
         func (c *MultiLineImpl) Convert(source execution.Input) execution.Output {
         	var exampleOutput execution.Output
         	exampleOutput.Name = source.Name
@@ -52,6 +54,8 @@ success:
         // More detailed
         type MultipleSingleLineImpl struct{}
 
+        var MultipleSingleLine = MultipleSingleLineImpl{}
+
         func (c *MultipleSingleLineImpl) Convert(source execution.Input) execution.Output {
         	var exampleOutput execution.Output
         	exampleOutput.Name = source.Name
@@ -60,6 +64,8 @@ success:
 
         // single comment
         type SingleCommentImpl struct{}
+
+        var SingleComment = SingleCommentImpl{}
 
         func (c *SingleCommentImpl) Convert(source execution.Input) execution.Output {
         	var exampleOutput execution.Output

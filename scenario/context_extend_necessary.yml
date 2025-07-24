@@ -50,6 +50,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source []execution.Input, context map[string]int, context2 map[string]bool) []execution.Output {
         	var exampleOutputList []execution.Output
         	if source != nil {

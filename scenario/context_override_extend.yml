@@ -33,6 +33,8 @@ success:
 
         type Conv1Impl struct{}
 
+        var Conv1 = Conv1Impl{}
+
         func (c *Conv1Impl) Convert(source []string, context map[string]execution.Output) []execution.Output {
         	var exampleOutputList []execution.Output
         	if source != nil {
@@ -45,6 +47,8 @@ success:
         }
 
         type Conv2Impl struct{}
+
+        var Conv2 = Conv2Impl{}
 
         func (c *Conv2Impl) Convert(source []string, context map[string]execution.Output) []execution.Output {
         	var exampleOutputList []execution.Output

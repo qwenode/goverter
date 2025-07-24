@@ -29,4 +29,4 @@ error: |-
     error parsing type:
         func github.com/jmattheis/goverter/execution/external.intToString(int) string
 
-    must be exported
+    must be exported or in the same package as the converter

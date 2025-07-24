@@ -41,6 +41,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source *execution.Input) (execution.Output, error) {
         	executionOutput := execution.NewOutputWithDefaults()
         	if source != nil {
@@ -51,6 +53,8 @@ success:
 
         type UpdateImpl struct{}
 
+        var Update = UpdateImpl{}
+
         func (c *UpdateImpl) Update(source *execution.Input) (execution.Output, error) {
         	executionOutput := execution.NewOutputWithDefaults()
         	if source != nil {
@@ -60,6 +64,8 @@ success:
         }
 
         type UpdateUpdateImpl struct{}
+
+        var UpdateUpdate = UpdateUpdateImpl{}
 
         func (c *UpdateUpdateImpl) Update(source *execution.Input) (execution.Output, error) {
         	executionOutput := execution.NewOutputWithDefaults()

@@ -42,6 +42,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source input.Color) (output.Color, error) {
         	outputColor := execution.DefaultColor()
         	switch source {

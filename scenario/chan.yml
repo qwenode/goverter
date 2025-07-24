@@ -27,6 +27,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) A(source chan int) chan int {
         	return source
         }

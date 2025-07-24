@@ -25,6 +25,8 @@ success:
 
         type Converter2Impl struct{}
 
+        var Converter2 = Converter2Impl{}
+
         func (c *Converter2Impl) Convert(source execution.Data) execution.Data {
         	var slices_arraysData execution.Data
         	for i := 0; i < len(source.B); i++ {
@@ -34,6 +36,8 @@ success:
         }
 
         type ConverterImpl struct{}
+
+        var Converter = ConverterImpl{}
 
         func (c *ConverterImpl) Convert(source [5]int) [5]int {
         	var intList [5]int

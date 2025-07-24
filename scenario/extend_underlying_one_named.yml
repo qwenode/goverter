@@ -38,6 +38,8 @@ success:
 
         type C1Impl struct{}
 
+        var C1 = C1Impl{}
+
         func (c *C1Impl) C(source execution.X[execution.IntID]) execution.X[execution.StringID] {
         	var underlyingX execution.X[execution.StringID]
         	underlyingX.T = execution.StringID(execution.IntToString(int(source.T)))
@@ -45,6 +47,8 @@ success:
         }
 
         type C2Impl struct{}
+
+        var C2 = C2Impl{}
 
         func (c *C2Impl) C(source execution.X[execution.IntID]) execution.X[string] {
         	var underlyingX execution.X[string]
@@ -54,6 +58,8 @@ success:
 
         type C3Impl struct{}
 
+        var C3 = C3Impl{}
+
         func (c *C3Impl) C(source execution.X[int]) execution.X[string] {
         	var underlyingX execution.X[string]
         	underlyingX.T = execution.IntToString(source.T)
@@ -61,6 +67,8 @@ success:
         }
 
         type C4Impl struct{}
+
+        var C4 = C4Impl{}
 
         func (c *C4Impl) C(source execution.X[int]) execution.X[execution.StringID] {
         	var underlyingX execution.X[execution.StringID]

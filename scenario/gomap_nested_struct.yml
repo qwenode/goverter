@@ -14,6 +14,8 @@ success:
 
         type ConverterImpl struct{}
 
+        var Converter = ConverterImpl{}
+
         func (c *ConverterImpl) Convert(source map[string]map[uint]map[bool]string) map[string]map[uint]map[bool]string {
         	var mapStringMapUintMapBoolString map[string]map[uint]map[bool]string
         	if source != nil {
