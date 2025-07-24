@@ -91,6 +91,18 @@ func (g *generator) appendGenerated(f *jen.File) {
 			f.Comment(strings.Join(g.conf.Comments, "\n"))
 		}
 		f.Type().Id(g.conf.Name).Struct()
+		
+		// 生成单例变量，例如: var ConverterConvert = ConverterImpl{}
+		singletonName := strings.TrimSuffix(g.conf.Name, "Impl")
+		if singletonName == g.conf.Name {
+			// 如果名称不以 Impl 结尾，则使用原名称
+			singletonName = g.conf.Name
+		}
+		// 确保首字母大写并添加 Convert 后缀
+		if len(singletonName) > 0 {
+			singletonName = strings.ToUpper(singletonName[:1]) + singletonName[1:] + "Convert"
+		}
+		f.Var().Id(singletonName).Op("=").Id(g.conf.Name).Values()
 	}
 
 	var init []jen.Code
