@@ -164,7 +164,9 @@ func (g *generator) buildMethod(genMethod *generatedMethod, context map[string]*
 			targetAssign = jen.Id(name)
 			args = append(args, jen.Id(name).Add(arg.Type.TypeAsJen()))
 		case method.ArgUseMultiSource:
-			panic("multi source aren't supported right now. https://github.com/jmattheis/goverter/issues/143")
+			// 对于多源参数，我们使用原始参数名
+			// 这些参数将在argmap中被引用
+			args = append(args, jen.Id(arg.Name).Add(arg.Type.TypeAsJen()))
 		}
 	}
 

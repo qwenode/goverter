@@ -175,6 +175,39 @@ func mapField(
 ) (*xtype.JenID, *xtype.Type, []jen.Code, []*Path, bool, *Error) {
 	lift := []*Path{}
 	def := ctx.Field(target, targetField.Name())
+	
+	// 处理 argmap 映射
+	if def.ArgIndex > 0 {
+		// 检查参数索引是否有效
+		if def.ArgIndex > len(ctx.Conf.RawArgs) {
+			return nil, nil, nil, nil, false, NewError(fmt.Sprintf("argmap index $%d is out of range, method has %d arguments", def.ArgIndex, len(ctx.Conf.RawArgs))).Lift(&Path{
+				Prefix:     ".",
+				SourceID:   fmt.Sprintf("$%d", def.ArgIndex),
+				SourceType: "goverter:argmap",
+				TargetID:   targetField.Name(),
+				TargetType: targetField.Type().String(),
+			})
+		}
+		
+		// 获取对应的参数
+		arg := ctx.Conf.RawArgs[def.ArgIndex-1] // 参数索引从1开始，数组索引从0开始
+		argType := arg.Type
+		argName := arg.Name
+		
+		// 创建参数访问的代码
+		argID := xtype.VariableID(jen.Id(argName))
+		
+		lift = append(lift, &Path{
+			Prefix:     ".",
+			SourceID:   fmt.Sprintf("$%d (%s)", def.ArgIndex, argName),
+			SourceType: fmt.Sprintf("goverter:argmap %s", argType.String),
+			TargetID:   targetField.Name(),
+			TargetType: targetField.Type().String(),
+		})
+		
+		return argID, argType, nil, lift, false, nil
+	}
+	
 	pathString := def.Source
 	if pathString == "." {
 		lift = append(lift, &Path{

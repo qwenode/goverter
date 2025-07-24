@@ -37,6 +37,7 @@ type FieldMapping struct {
 	Source   string
 	Function *method.Definition
 	Ignore   bool
+	ArgIndex int // 用于argmap，表示从第几个参数获取值，0表示不使用argmap
 }
 
 func (m *Method) Field(targetName string) *FieldMapping {
@@ -90,12 +91,22 @@ func parseMethod(ctx *context, c *Converter, obj types.Object, rawMethod RawLine
 		}
 	}
 
+	// 检查是否有使用argmap的字段，如果有则允许多源参数
+	hasArgMap := false
+	for _, field := range m.Fields {
+		if field.ArgIndex > 0 {
+			hasArgMap = true
+			break
+		}
+	}
+
 	def, err := method.Parse(obj, &method.ParseOpts{
 		ErrorPrefix:       "error parsing converter method",
 		Location:          rawMethod.Location,
 		Converter:         nil,
 		OutputPackagePath: c.OutputPackagePath,
 		Params:            method.ParamsRequired,
+		ParamsMultiSource: hasArgMap,
 		ContextMatch:      m.ArgContextRegex,
 		Generated:         true,
 		UpdateParam:       m.updateParam,
@@ -170,6 +181,16 @@ func parseMethodLine(ctx *context, c *Converter, m *Method, value string) (err e
 		var s string
 		s, err = parse.String(rest)
 		m.AutoMap = append(m.AutoMap, strings.TrimSpace(s))
+	case "argmap":
+		fieldSetting = true
+		var argIndex int
+		var target string
+		argIndex, target, err = parseMethodArgMap(rest)
+		if err != nil {
+			return err
+		}
+		f := m.Field(target)
+		f.ArgIndex = argIndex
 	case configDefault:
 		opts := &method.ParseOpts{
 			ErrorPrefix:       "error parsing type",
@@ -211,4 +232,51 @@ func parseMethodMap(remaining string) (source, target, custom string, err error)
 		err = fmt.Errorf("the mapping target %q must be a field name but was a path.\nDots \".\" are not allowed.", target)
 	}
 	return source, target, custom, err
+}
+
+func parseMethodArgMap(remaining string) (argIndex int, target string, err error) {
+	fields := strings.Fields(remaining)
+	if len(fields) != 2 {
+		err = fmt.Errorf("argmap requires exactly 2 fields: $<index> <target_field>, got %d: %s", len(fields), remaining)
+		return
+	}
+
+	argStr := fields[0]
+	target = fields[1]
+
+	// 检查参数格式是否为 $数字
+	if !strings.HasPrefix(argStr, "$") {
+		err = fmt.Errorf("argument index must start with '$', got: %s", argStr)
+		return
+	}
+
+	// 解析数字部分
+	indexStr := argStr[1:]
+	if indexStr == "" {
+		err = fmt.Errorf("missing argument index after '$'")
+		return
+	}
+
+	// 简单的数字解析
+	argIndex = 0
+	for _, r := range indexStr {
+		if r < '0' || r > '9' {
+			err = fmt.Errorf("invalid argument index: %s, must be a number", indexStr)
+			return
+		}
+		argIndex = argIndex*10 + int(r-'0')
+	}
+
+	if argIndex < 1 {
+		err = fmt.Errorf("argument index must be >= 1, got: %d", argIndex)
+		return
+	}
+
+	// 检查目标字段名是否有效
+	if strings.ContainsRune(target, '.') {
+		err = fmt.Errorf("the mapping target %q must be a field name but was a path.\nDots \".\" are not allowed.", target)
+		return
+	}
+
+	return argIndex, target, nil
 }

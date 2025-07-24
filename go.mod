@@ -2,6 +2,8 @@ module github.com/jmattheis/goverter
 
 go 1.22.0
 
+replace github.com/jmattheis/goverter => ./
+
 require (
 	github.com/dave/jennifer v1.6.0
 	github.com/stretchr/testify v1.8.1
