@@ -55,7 +55,7 @@ func ParseDocs(c ParseDocsConfig) ([]config.RawConverter, error) {
 %s
 
 Goverter cannot generate converters when there are compile errors because it
-requires the type information from the compiled sources.`, pkg.PkgPath, pkg.Errors[0])
+requires the type information from the compiled sources. 执行 go mod tidy 可能会解决这个问题`, pkg.PkgPath, pkg.Errors[0])
 		}
 		for _, file := range pkg.Syntax {
 			for _, decl := range file.Decls {
